@@ -9,9 +9,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import LiveTvIcon from "@mui/icons-material/LiveTv";
 import SearchIcon from '@mui/icons-material/Search';
 import BookmarksIcon from '@mui/icons-material/Bookmarks';
-function Header() {
+
+function HeaderMovie() {
   return (
-    <Box sx={{ flexGrow: 1}} >
+   <Box sx={{ flexGrow: 1}} >
       <AppBar position="static" style={{backgroundColor:"#212121"}}>
         <Toolbar>
           <LiveTvIcon />
@@ -25,7 +26,8 @@ function Header() {
         </Toolbar>
       </AppBar>
     </Box>
-  );
+  )
 }
 
-export default Header;
+export default HeaderMovie
+

@@ -1,14 +1,14 @@
 import { useState } from 'react'
 import './App.css'
-import Header from "./components/header";
 import MovieCard from './components/MovieCard'
+import HeaderMovie from './components/HeaderMovie'
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <Header></Header>
+    <HeaderMovie/>
      <MovieCard></MovieCard>
     </>
   )
