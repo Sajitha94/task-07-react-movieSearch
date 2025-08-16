@@ -16,12 +16,12 @@ function HeaderMovie() {
       <AppBar position="static" style={{backgroundColor:"#212121"}}>
         <Toolbar>
           <LiveTvIcon />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 ,padding:"10px",fontSize:{xs:"14px",sm:"18px"}}}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1 ,padding:"10px",fontSize:{xs:"16px",sm:"18px"}}}>
             Moviess
           </Typography>
           <Box sx={{display:"flex", gap:"5px"}}>
-          <Button color="inherit" sx={{fontSize:{xs:"11px",sm:"18px"},padding: "5px"}}><SearchIcon sx={{margin:"5px", display: { xs: "none", sm: "inline-flex" } }}/> Search</Button>
-          <Button color="inherit" sx={{fontSize:{xs:"11px",sm:"18px"},padding: "5px"}}> <BookmarksIcon sx={{margin:"5px",display:{xs:"none",sm:"inline-flex"}}} /> Favorites (3)</Button>
+          <Button color="inherit" sx={{fontSize:{xs:"13px",sm:"16px"},padding: "5px"}}><SearchIcon sx={{margin:"5px", display: { xs: "none", sm: "inline-flex" } }}/> Search</Button>
+          <Button color="inherit" sx={{fontSize:{xs:"13px",sm:"16px"},padding: "5px"}}> <BookmarksIcon sx={{margin:"5px",display:{xs:"none",sm:"inline-flex"}}} /> Favorites (3)</Button>
           </Box>
         </Toolbar>
       </AppBar>
