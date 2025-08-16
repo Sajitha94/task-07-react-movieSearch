@@ -16,7 +16,7 @@ function Header() {
         <Toolbar>
           <LiveTvIcon />
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 ,padding:"10px",fontSize:{xs:"14px",sm:"18px"}}}>
-            Movies
+            Moviess
           </Typography>
           <Box sx={{display:"flex", gap:"5px"}}>
           <Button color="inherit" sx={{fontSize:{xs:"11px",sm:"18px"},padding: "5px"}}><SearchIcon sx={{margin:"5px", display: { xs: "none", sm: "inline-flex" } }}/> Search</Button>
