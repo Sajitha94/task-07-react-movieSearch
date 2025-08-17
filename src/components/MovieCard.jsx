@@ -26,15 +26,15 @@ const { movie } = useMovieData();
 console.log(movie,"p");
 
   return (
-    <Box  className=' grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  place-items-center gap-3 lg:px-24 md:px-10 px-3'>
+    <Box  className=' grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  place-items-center gap-3 lg:px-24 md:px-10 px-3'>
       {movie.map((movieList,idx)=>(
-      <Card sx={{ height:{lg:"95vh"},
-        width:{lg:"25vw"},display:"flex",flexDirection:"column",background:"#121212",border:"1px solid #424242",borderRadius:"10px"}} key={idx}>
+      <Card sx={{height: "100%", 
+        display:"flex",flexDirection:"column",background:"#121212",border:"1px solid #424242",borderRadius:"10px"}} key={idx}>
      
       <CardMedia
         component="img"
+        sx={{height:"100%",width:"100%",objectFit:"cover"}}
         
-        sx={{ height: "75vh"}} 
         image={movieList.Poster && movieList.Poster  !== "N/A" ? movieList.Poster : defaultImage}
         alt={movieList.Title}
         onError={(e)=>e.currentTarget.src=defaultImage}
