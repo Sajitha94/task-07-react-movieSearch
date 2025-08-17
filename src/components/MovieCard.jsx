@@ -28,7 +28,7 @@ console.log(movie,"p");
   return (
     <Box  className=' grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  place-items-center gap-3 lg:px-24 md:px-10'>
       {movie.map((movieList,idx)=>(
-      <Card sx={{ height:"95vh",
+      <Card sx={{ height:{lg:"95vh",md:"100vh"},
         width:{lg:"25vw"},display:"flex",flexDirection:"column",background:"#121212",border:"1px solid #424242",borderRadius:"10px"}} key={idx}>
      
       <CardMedia
