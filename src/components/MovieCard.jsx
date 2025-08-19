@@ -10,18 +10,37 @@ import defaultImage from "../assets/noImage.png";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { useNavigate } from "react-router-dom";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
-function MovieCard() {
-  const { movie } = useMovieData();
-  console.log(movie, "p");
+import StarIcon from "@mui/icons-material/Star";
+function MovieCard({favoriteListItem}) {
+  const { movie , favoriteList, setFavoriteList} = useMovieData();
   const navigate = useNavigate();
 
-  function favoriteList(movieList) {
-    console.log(movieList, "movilistt");
+   const movieListItem = favoriteListItem && favoriteListItem.length > 0 ? favoriteListItem : movie;
+ console.log(favoriteListItem,"favoriteListItem34");
+ 
+  
+  function toggleFavorite(movieItem) {
+    setFavoriteList((prevFavorites) => {
+      const exists = prevFavorites.some(
+        (fav) => fav.imdbID === movieItem.imdbID
+      );
+      if (exists) {
+        // remove from favorites
+
+        return prevFavorites.filter((fav) => fav.imdbID !== movieItem.imdbID);
+        
+      } else {
+        // add to favorites
+        return [...prevFavorites, movieItem];
+      }
+      
+    });
+
   }
 
   return (
     <Box className=" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  place-items-center gap-3 lg:px-24 md:px-10 px-3">
-      {movie.map((movieList, idx) => (
+      {movieListItem.map((movieList, idx) => (
         <Card
           sx={{
             height: "100%",
@@ -70,7 +89,7 @@ function MovieCard() {
               </Typography>
               <StarBorderIcon
                 className="text-amber-300"
-                onClick={() => favoriteList(movieList)}
+                onClick={() => toggleFavorite(movieList)}
               />
             </Box>
           </CardContent>

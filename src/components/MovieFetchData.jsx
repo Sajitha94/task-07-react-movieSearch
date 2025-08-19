@@ -8,6 +8,7 @@ const MovieDataApi=createContext()
 export function MovieFetchData({ children }) {
   const [movie, setMovie] = useState([]);
   const [searchTerm, setSearchTerm] = useState("Tamil");
+  const [favoriteList, setFavoriteList] =useState([])
 
   useEffect(() => {
     if(!searchTerm) return;
@@ -15,13 +16,13 @@ export function MovieFetchData({ children }) {
     fetch(`${REST_HOST_API}/?apikey=${MYKEY}&s=${searchTerm}`)
       .then((res) => res.json())
       .then((data) => {
-        setMovie(data.Search );
+        setMovie(data.Search || []);
       })
       .catch((err) => console.log(err));
   }, [searchTerm]);
 
   return (
-   <MovieDataApi.Provider value={{ movie, setMovie, setSearchTerm }}>
+   <MovieDataApi.Provider value={{ movie, setMovie, setSearchTerm ,setFavoriteList,  favoriteList,  }}>
   {children}
 </MovieDataApi.Provider>
   );

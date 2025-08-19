@@ -6,10 +6,12 @@ import SearchPage from "./components/SearchPage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Box } from "@mui/material";
 import ProductDetails from "./pages/ProductDetails";
+import FavoriteList from "./pages/FavoriteList";
+import { useMovieData } from "./components/MovieFetchData";
 
 function App() {
-  const [count, setCount] = useState(0);
 
+ 
   return (
     <>
       <Router>
@@ -33,6 +35,8 @@ function App() {
             }
           ></Route>
           <Route path="/moviedetail/:omdId" element={<ProductDetails/>}></Route>
+          <Route path="/favoritelist" element={<FavoriteList/>}></Route>
+
         </Routes>
       </Router>
     </>
