@@ -51,7 +51,7 @@ function MovieCard({ favoriteListItem }) {
         >
           <CardMedia
             component="img"
-            sx={{ height: "100%", width: "100%", objectFit: "cover" }}
+            sx={{ height: "100%", width: "100%", objectFit: "cover" ,cursor:"pointer"}}
             image={
               movieList.Poster && movieList.Poster !== "N/A"
                 ? movieList.Poster
@@ -86,10 +86,10 @@ function MovieCard({ favoriteListItem }) {
                 Details <ArrowForwardIcon />
               </Typography>
               {favoriteList.some((fav) => fav.imdbID === movieList.imdbID) ? (
-                <StarIcon  className="text-amber-300"  onClick={() => toggleFavorite(movieList)}/>
+                <StarIcon  className="text-amber-300 cursor-pointer"  onClick={() => toggleFavorite(movieList)}/>
               ) : (
                 <StarBorderIcon
-                  className="text-amber-300"
+                  className="text-amber-300 cursor-pointer"
                   onClick={() => toggleFavorite(movieList)}
                 />
               )}
