@@ -52,7 +52,7 @@ function SearchPage() {
   }
   return (
     <Box className="flex gap-5 lg:mx-24 md:mx-10 mx-3  my-10 justify-between">
-      <Search className="w-full px-5">
+      <Search className="w-full px-5 flex items-center">
         <SearchIconWrapper>
           <SearchIcon />
         </SearchIconWrapper>
@@ -64,7 +64,7 @@ function SearchPage() {
         />
       </Search>
       <Button
-        sx={{ backgroundColor: "#5da9e9", borderRadius: "6px" }}
+        sx={{ backgroundColor: "#5da9e9", borderRadius: "6px", width: "100px" }}
         onClick={handleSearch}
       >
         search
@@ -76,23 +76,36 @@ function SearchPage() {
           borderRadius: "5px",
           color: "white",
           width: "10vw",
+          paddingLeft: "10px",
+          fontSize: "10px",
+          display: "flex",
+          alignItems: "center",
+          justifyItems: "center",
         }}
       >
         <InputLabel
           variant="standard"
           htmlFor="uncontrolled-native"
-          sx={{ color: "white" }}
+          sx={{ color: "white", padding: "0", fontSize: "12px" }}
         >
           TYPE
         </InputLabel>
         <NativeSelect
-          sx={{ color: "white", backgroundColor: "#13161a" }}
+          sx={{
+            color: "white",
+            backgroundColor: "#13161a",
+            fontSize: "12px",
+            "& option": {
+              backgroundColor: "#13161a",
+              color: "white",
+            },
+            "& select": {
+              backgroundColor: "#13161a",
+              color: "white",
+            },
+          }}
           defaultValue="all"
           disableUnderline
-          inputProps={{
-            name: "TYPE",
-            id: "uncontrolled-native",
-          }}
         >
           <option value="all">All</option>
           <option value="movie">Movies</option>

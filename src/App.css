@@ -2,3 +2,7 @@
 body{
     background: #000;
 }
+.MuiNativeSelect-select option {
+  background-color: #13161a !important;
+  color: white !important;
+}
