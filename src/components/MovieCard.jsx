@@ -64,7 +64,8 @@ function MovieCard({ favoriteListItem }) {
             }}
           />
           <CardHeader
-            style={{ color: "#e7ebf0", padding: "5px" }}
+            style={{ color: "#e7ebf0", padding: "5px"  }}
+            titleTypographyProps={{ fontSize: "16px" }}
             title={movieList.Title}
           />
           <CardContent style={{ color: "#9aa4b2", padding: "5px" }}>
