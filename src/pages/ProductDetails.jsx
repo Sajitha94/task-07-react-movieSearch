@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { MYKEY, REST_HOST_API } from "../moviedb";
-import { Box, Card, CardContent, CardHeader, CardMedia, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  CardHeader,
+  CardMedia,
+  Typography,
+} from "@mui/material";
 import defaultImage from "../assets/noImage.png";
 import { useMovieData } from "../components/MovieFetchData";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
+import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 function ProductDetails() {
   const [moviedetail, setMovieDetail] = useState(null);
-    const { favoriteList, setFavoriteList } = useMovieData();
+  const { favoriteList, setFavoriteList } = useMovieData();
   const { omdId } = useParams();
 
   useEffect(() => {
-   if(!omdId) return
-   fetch(`${REST_HOST_API}/?apikey=${MYKEY}&i=${omdId}&plot=full`)
+    if (!omdId) return;
+    fetch(`${REST_HOST_API}/?apikey=${MYKEY}&i=${omdId}&plot=full`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -21,10 +30,9 @@ function ProductDetails() {
       })
       .catch((err) => console.log(err));
   }, [omdId]);
-console.log(moviedetail,"moviedetail");
+  console.log(moviedetail, "moviedetail");
 
-
- function toggleFavorite(movieItem) {
+  function toggleFavorite(movieItem) {
     setFavoriteList((prevFavorites) => {
       const exists = prevFavorites.some(
         (fav) => fav.imdbID === movieItem.imdbID
@@ -39,47 +47,103 @@ console.log(moviedetail,"moviedetail");
       }
     });
   }
-  
 
   if (!moviedetail) return <Typography>Loading...</Typography>;
   return (
-    <Box className='text-amber-100 flex justify-between'>
-      <Card className='w-1/3'>
-        <CardMedia component="img"
-         image={moviedetail.Poster && moviedetail.Poster !=="N/A" ? moviedetail.Poster :defaultImage}/>
-      </Card>
-      <Box className='w-2/3'>
-      <CardHeader  title={moviedetail.Title}/>
-      <CardContent>
-        <Typography>
-           {moviedetail.Type}
-        </Typography>
-          <Typography>
-           {moviedetail.Year}
-        </Typography>
-   <Typography>
-           {moviedetail.Plot}
-        </Typography>   <Typography>
-           {moviedetail.Awards}
-        </Typography>   <Typography>
-           {moviedetail.Writer}
-        </Typography>   <Typography>
-           {moviedetail.Type}
-        </Typography>   <Typography>
-           {moviedetail.Type}
-        </Typography>
-
-
+    <Box  className='my-10'>
+      <Card className=" flex  justify-between bg-transparent mx-20" sx={{backgroundColor:"transparent", color:"white" }}>
+      <Box className="w-2/4 ">
+        <CardMedia
+          component="img"
+          image={
+            moviedetail.Poster && moviedetail.Poster !== "N/A"
+              ? moviedetail.Poster
+              : defaultImage
+          }
+        />
         {favoriteList.some((fav) => fav.imdbID === moviedetail.imdbID) ? (
-                <StarIcon  className="text-amber-300"  onClick={() => toggleFavorite(moviedetail)}/>
-              ) : (
-                <StarBorderIcon
-                  className="text-amber-300"
-                  onClick={() => toggleFavorite(moviedetail)}
-                />
-              )}
-      </CardContent>
+          <Button
+            sx={{ backgroundColor: "#212121", width: "100%",borderRadius:"8px",marginTop:"5px"}}
+            onClick={() => toggleFavorite(moviedetail)}
+          >
+            <StarIcon className="text-amber-500" />
+            <span className="text-amber-500">
+              <strong>In Favorites</strong>
+            </span>
+          </Button>
+        ) : (
+          <Button
+            sx={{ backgroundColor: "#212121", width: "100%",borderRadius:"8px",marginTop:"5px"}}
+            onClick={() => toggleFavorite(moviedetail)}
+          >
+            <StarBorderIcon className="text-amber-500" />
+            <span className="text-amber-500">
+              <strong> Add to Favorites</strong>
+            </span>
+          </Button>
+        )}
+    </Box>
+      <Box className="w-3/4">
+        <CardHeader title={moviedetail.Title} />
+        <CardContent>
+          <Box className="flex flex-col">
+            <Box className="flex gap-1  items-center">
+              <Typography>{moviedetail.Year}</Typography>
+              <FiberManualRecordIcon sx={{ fontSize: 8, mx: 1 }} />{" "}
+              <Typography>{moviedetail.Rated}</Typography>
+              <FiberManualRecordIcon sx={{ fontSize: 8, mx: 1 }} />{" "}
+              <Typography>{moviedetail.Runtime}</Typography>
+            </Box>
+            <Typography>{moviedetail.Genre}</Typography>
+          </Box>
+          <Typography>{moviedetail.Plot}</Typography>{" "}
+          <Box className="flex   justify-between items-center">
+            <Box className="flex flex-col gap-2">
+              <Typography>
+                <strong>Director: </strong>
+                {moviedetail.Director}
+              </Typography>{" "}
+              <Typography>
+                <strong>Cast: </strong>
+                {moviedetail.Actors}
+              </Typography>{" "}
+              <Typography>
+                <strong>Country:</strong> {moviedetail.Country}
+              </Typography>{" "}
+            </Box>
+            <Box className="flex flex-col gap-2">
+              <Typography>
+                <strong> Writer: </strong> {moviedetail.Writer}
+              </Typography>{" "}
+              <Typography>
+                {" "}
+                <strong>Released:</strong>
+                {moviedetail.Released}
+              </Typography>{" "}
+              <Typography>
+                <strong>Language: </strong> {moviedetail.Language}
+              </Typography>{" "}
+            </Box>
+          </Box>
+          {Array.isArray(moviedetail.Ratings) &&
+            moviedetail.Ratings.length > 0 && (
+              <Box>
+                <h3>
+                  {" "}
+                  <strong>Ratings</strong>
+                </h3>
+                <ul>
+                  {moviedetail.Ratings.map((item, idx) => (
+                    <li key={idx}>
+                      <strong>{item.Source}:</strong> {item.Value}
+                    </li>
+                  ))}
+                </ul>
+              </Box>
+            )}
+        </CardContent>
       </Box>
+        </Card>
     </Box>
   );
 }
