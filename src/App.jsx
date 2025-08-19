@@ -15,6 +15,7 @@ function App() {
   return (
     <>
       <Router>
+        <HeaderMovie />
         <Routes>
           <Route
             path="/"
@@ -28,7 +29,7 @@ function App() {
                 }}
               >
                 {" "}
-                <HeaderMovie />
+                
                 <SearchPage />
                 <MovieCard />
               </Box>

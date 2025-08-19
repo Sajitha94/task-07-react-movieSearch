@@ -11,14 +11,14 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { useNavigate } from "react-router-dom";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
-function MovieCard({favoriteListItem}) {
-  const { movie , favoriteList, setFavoriteList} = useMovieData();
+function MovieCard({ favoriteListItem }) {
+  const { movie, favoriteList, setFavoriteList } = useMovieData();
   const navigate = useNavigate();
 
-   const movieListItem = favoriteListItem && favoriteListItem.length > 0 ? favoriteListItem : movie;
- console.log(favoriteListItem,"favoriteListItem34");
- 
-  
+  const movieListItem =
+    favoriteListItem && favoriteListItem.length > 0 ? favoriteListItem : movie;
+  console.log(favoriteListItem, "favoriteListItem34");
+
   function toggleFavorite(movieItem) {
     setFavoriteList((prevFavorites) => {
       const exists = prevFavorites.some(
@@ -28,14 +28,11 @@ function MovieCard({favoriteListItem}) {
         // remove from favorites
 
         return prevFavorites.filter((fav) => fav.imdbID !== movieItem.imdbID);
-        
       } else {
         // add to favorites
         return [...prevFavorites, movieItem];
       }
-      
     });
-
   }
 
   return (
@@ -87,10 +84,14 @@ function MovieCard({favoriteListItem}) {
               >
                 Details <ArrowForwardIcon />
               </Typography>
-              <StarBorderIcon
-                className="text-amber-300"
-                onClick={() => toggleFavorite(movieList)}
-              />
+              {favoriteList.some((fav) => fav.imdbID === movieList.imdbID) ? (
+                <StarIcon  className="text-amber-300"  onClick={() => toggleFavorite(movieList)}/>
+              ) : (
+                <StarBorderIcon
+                  className="text-amber-300"
+                  onClick={() => toggleFavorite(movieList)}
+                />
+              )}
             </Box>
           </CardContent>
         </Card>
