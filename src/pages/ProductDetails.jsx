@@ -64,7 +64,7 @@ function ProductDetails() {
         />
         {favoriteList.some((fav) => fav.imdbID === moviedetail.imdbID) ? (
           <Button
-            sx={{ backgroundColor: "#212121", width: "100%",borderRadius:"8px",marginTop:"5px"}}
+            sx={{ backgroundColor: "#212121", width: "100%",borderRadius:"8px",marginTop:"8px"}}
             onClick={() => toggleFavorite(moviedetail)}
           >
             <StarIcon className="text-amber-500" />
@@ -74,7 +74,7 @@ function ProductDetails() {
           </Button>
         ) : (
           <Button
-            sx={{ backgroundColor: "#212121", width: "100%",borderRadius:"8px",marginTop:"5px"}}
+            sx={{ backgroundColor: "#212121", width: "100%",borderRadius:"8px",marginTop:"8px"}}
             onClick={() => toggleFavorite(moviedetail)}
           >
             <StarBorderIcon className="text-amber-500" />
@@ -84,11 +84,11 @@ function ProductDetails() {
           </Button>
         )}
     </Box>
-      <Box className="lg:w-3/4">
-        <CardHeader title={moviedetail.Title} />
-        <CardContent>
-          <Box className="flex flex-col">
-            <Box className="flex gap-1  items-center">
+      <Box className="lg:w-3/4  h-2/4">
+        <CardHeader title={moviedetail.Title} sx={{padding:"0", paddingLeft:"14px",paddingTop:{xs:"10px", md:"0"}}} />
+        <CardContent className="flex gap-5 flex-col"> 
+          <Box className="flex flex-col ">
+            <Box className="flex   items-center">
               <Typography>{moviedetail.Year}</Typography>
               <FiberManualRecordIcon sx={{ fontSize: 8, mx: 1 }} />{" "}
               <Typography>{moviedetail.Rated}</Typography>
@@ -98,31 +98,31 @@ function ProductDetails() {
             <Typography>{moviedetail.Genre}</Typography>
           </Box>
           <Typography>{moviedetail.Plot}</Typography>{" "}
-          <Box className="flex   justify-between items-center">
-            <Box className="flex flex-col gap-2">
+          <Box className="flex  md:flex-row flex-col justify-between ">
+            <Box className="flex flex-col gap-2 ">
               <Typography>
                 <strong>Director: </strong>
-                {moviedetail.Director}
+                <span className="text-gray-400 text-md">{moviedetail.Director}</span>
               </Typography>{" "}
               <Typography>
                 <strong>Cast: </strong>
-                {moviedetail.Actors}
+                <span className="text-gray-400 text-md">{moviedetail.Actors}</span>
               </Typography>{" "}
               <Typography>
-                <strong>Country:</strong> {moviedetail.Country}
+                <strong>Country:</strong> <span className="text-gray-400 text-md">{moviedetail.Country}</span>
               </Typography>{" "}
             </Box>
             <Box className="flex flex-col gap-2">
               <Typography>
-                <strong> Writer: </strong> {moviedetail.Writer}
+                <strong> Writer: </strong> <span className="text-gray-400 text-md">{moviedetail.Writer}</span>
               </Typography>{" "}
               <Typography>
                 {" "}
                 <strong>Released:</strong>
-                {moviedetail.Released}
+              <span className="text-gray-400 text-md">  {moviedetail.Released}</span>
               </Typography>{" "}
               <Typography>
-                <strong>Language: </strong> {moviedetail.Language}
+                <strong>Language: </strong> <span className="text-gray-400 text-md">{moviedetail.Language}</span>
               </Typography>{" "}
             </Box>
           </Box>
@@ -131,12 +131,12 @@ function ProductDetails() {
               <Box>
                 <h3>
                   {" "}
-                  <strong>Ratings</strong>
+                  <strong className="text-amber-200">Ratings</strong>
                 </h3>
                 <ul>
                   {moviedetail.Ratings.map((item, idx) => (
                     <li key={idx}>
-                      <strong>{item.Source}:</strong> {item.Value}
+                      <strong>{item.Source}:</strong><span className="text-slate-400 text-md px-2">{moviedetail.Director} {item.Value}</span>
                     </li>
                   ))}
                 </ul>
