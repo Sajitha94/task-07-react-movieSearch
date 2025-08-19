@@ -12,8 +12,8 @@ function FavoriteList() {
     <>
       {favoriteList.length > 0 ? (
         <Box className='flex flex-col justify-center my-10 gap-5'>
-          <Box className='flex items-center justify-between me-30'>
-        <h1 className="text-amber-100 text-3xl lg:px-24 md:px-10 px-3">Your Favorites</h1>
+          <Box className='flex items-center justify-between  md:me-10 me-5'>
+        <h1 className="text-amber-100 md:text-3xl text-2xl lg:px-24 md:px-10 px-3">Your Favorites</h1>
         <small className="text-amber-100 text-lg cursor-pointer" onClick={()=>setFavoriteList([])}>Remove All</small>
         </Box>
         <MovieCard favoriteListItem={favoriteList} />
