@@ -51,8 +51,8 @@ function ProductDetails() {
   if (!moviedetail) return <Typography>Loading...</Typography>;
   return (
     <Box  className='my-10'>
-      <Card className=" flex  justify-between bg-transparent mx-20" sx={{backgroundColor:"transparent", color:"white" }}>
-      <Box className="w-2/4 ">
+      <Card className=" flex lg:flex-row flex-col justify-between bg-transparent lg:mx-20 mx-4" sx={{backgroundColor:"transparent", color:"white" }}>
+      <Box className="lg:w-2/4 ">
         <CardMedia
           component="img"
           image={
@@ -60,6 +60,7 @@ function ProductDetails() {
               ? moviedetail.Poster
               : defaultImage
           }
+          className="rounded-2xl"
         />
         {favoriteList.some((fav) => fav.imdbID === moviedetail.imdbID) ? (
           <Button
@@ -83,7 +84,7 @@ function ProductDetails() {
           </Button>
         )}
     </Box>
-      <Box className="w-3/4">
+      <Box className="lg:w-3/4">
         <CardHeader title={moviedetail.Title} />
         <CardContent>
           <Box className="flex flex-col">
