@@ -1,25 +1,16 @@
-import * as React from "react";
 import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
-import Badge from "@mui/material/Badge";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import MailIcon from "@mui/icons-material/Mail";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import MoreIcon from "@mui/icons-material/MoreVert";
 import { Button, NativeSelect } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
-// import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { useMovieData } from "./MovieFetchData";
+import { useRef, useState } from "react";
 function SearchPage() {
+const {setSearchTerm} =useMovieData();
+const inputRef = useRef();
+
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -46,6 +37,20 @@ function SearchPage() {
     },
   }));
 
+  function handleSearch(){
+     const value = inputRef.current.value;
+     
+    if (value.trim() !== ""){
+      setSearchTerm(value )
+
+    }
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  }
   return (
     <Box className="flex gap-5 lg:mx-24 md:mx-10 mx-3  my-10 justify-between">
       <Search className="w-full px-5">
@@ -55,9 +60,12 @@ function SearchPage() {
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
+      inputRef={inputRef} 
+      onKeyDown={handleKeyDown} 
+          
         />
       </Search>
-      <Button sx={{ backgroundColor: "#5da9e9", borderRadius: "6px" }}>
+      <Button sx={{ backgroundColor: "#5da9e9", borderRadius: "6px" }} onClick={handleSearch}>
         search
       </Button>
       <FormControl sx={{backgroundColor:'#13161a', border:'1px solid #1d232b',borderRadius:'5px',color:'white' ,width:'10vw' }}  >
