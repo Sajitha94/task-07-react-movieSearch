@@ -19,7 +19,7 @@ function HeaderMovie() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ backgroundColor: "#212121" }}>
         <Toolbar>
-          <LiveTvIcon />
+          <LiveTvIcon className="text-[#039be5]"/>
           <Typography
             variant="h6"
             component="div"
@@ -27,28 +27,17 @@ function HeaderMovie() {
               flexGrow: 1,
               padding: "10px",
               fontSize: { xs: "16px", sm: "18px" },
+              color:"#039be5"
             }}
             onClick={() => navigate(`/`)}
           >
             Moviess
           </Typography>
           <Box sx={{ display: "flex", gap: "5px" }}>
-            <Button
+           
+            <Button 
               color="inherit"
-              sx={{ fontSize: { xs: "13px", sm: "16px" }, padding: "5px" }}
-               onClick={() => navigate(`/`)}
-            >
-              <SearchIcon
-                sx={{
-                  margin: "5px",
-                  display: { xs: "none", sm: "inline-flex" },
-                }}
-              />{" "}
-              Search
-            </Button>
-            <Button
-              color="inherit"
-              sx={{ fontSize: { xs: "13px", sm: "16px" }, padding: "5px" }}
+              sx={{ fontSize: { xs: "13px", sm: "16px" }, padding: "5px" ,color:"#ffc400"}}
               onClick={() => navigate(`/favoritelist`)}
             >
               {" "}
@@ -58,7 +47,7 @@ function HeaderMovie() {
                   display: { xs: "none", sm: "inline-flex" },
                 }}
               />{" "}
-              Favorites ({favoriteList.length})
+              Favorites {favoriteList.length>0 ?`( ${favoriteList.length})`:''}
             </Button>
           </Box>
         </Toolbar>
