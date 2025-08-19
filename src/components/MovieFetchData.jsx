@@ -15,7 +15,6 @@ export function MovieFetchData({ children }) {
     fetch(`${REST_HOST_API}/?apikey=${MYKEY}&s=${searchTerm}`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setMovie(data.Search );
       })
       .catch((err) => console.log(err));

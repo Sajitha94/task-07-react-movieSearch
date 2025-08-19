@@ -8,8 +8,8 @@ import FormControl from "@mui/material/FormControl";
 import { useMovieData } from "./MovieFetchData";
 import { useRef, useState } from "react";
 function SearchPage() {
-const {setSearchTerm} =useMovieData();
-const inputRef = useRef();
+  const { setSearchTerm } = useMovieData();
+  const inputRef = useRef();
 
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -37,12 +37,11 @@ const inputRef = useRef();
     },
   }));
 
-  function handleSearch(){
-     const value = inputRef.current.value;
-     
-    if (value.trim() !== ""){
-      setSearchTerm(value )
+  function handleSearch() {
+    const value = inputRef.current.value;
 
+    if (value.trim() !== "") {
+      setSearchTerm(value);
     }
   }
 
@@ -60,19 +59,34 @@ const inputRef = useRef();
         <StyledInputBase
           placeholder="Search…"
           inputProps={{ "aria-label": "search" }}
-      inputRef={inputRef} 
-      onKeyDown={handleKeyDown} 
-          
+          inputRef={inputRef}
+          onKeyDown={handleKeyDown}
         />
       </Search>
-      <Button sx={{ backgroundColor: "#5da9e9", borderRadius: "6px" }} onClick={handleSearch}>
+      <Button
+        sx={{ backgroundColor: "#5da9e9", borderRadius: "6px" }}
+        onClick={handleSearch}
+      >
         search
       </Button>
-      <FormControl sx={{backgroundColor:'#13161a', border:'1px solid #1d232b',borderRadius:'5px',color:'white' ,width:'10vw' }}  >
-        <InputLabel variant="standard" htmlFor="uncontrolled-native" sx={{color:'white'}}>
+      <FormControl
+        sx={{
+          backgroundColor: "#13161a",
+          border: "1px solid #1d232b",
+          borderRadius: "5px",
+          color: "white",
+          width: "10vw",
+        }}
+      >
+        <InputLabel
+          variant="standard"
+          htmlFor="uncontrolled-native"
+          sx={{ color: "white" }}
+        >
           TYPE
         </InputLabel>
-        <NativeSelect sx={{color:'white', backgroundColor:"#13161a"}}
+        <NativeSelect
+          sx={{ color: "white", backgroundColor: "#13161a" }}
           defaultValue="all"
           disableUnderline
           inputProps={{
@@ -80,12 +94,10 @@ const inputRef = useRef();
             id: "uncontrolled-native",
           }}
         >
-         
-    <option value="all">All</option>
-    <option value="movie">Movies</option>
-    <option value="series">Series</option>
-    <option value="episode">Episodes</option>
-
+          <option value="all">All</option>
+          <option value="movie">Movies</option>
+          <option value="series">Series</option>
+          <option value="episode">Episodes</option>
         </NativeSelect>
       </FormControl>
     </Box>
