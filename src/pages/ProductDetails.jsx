@@ -78,7 +78,7 @@ function ProductDetails() {
             onClick={() => toggleFavorite(moviedetail)}
           >
             <StarBorderIcon className="text-amber-500" />
-            <span className="text-amber-500">
+            <span className="text-amber-500 py-1">
               <strong> Add to Favorites</strong>
             </span>
           </Button>
