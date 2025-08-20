@@ -9,7 +9,7 @@ import { useMovieData } from "./MovieFetchData";
 import { useRef, useState } from "react";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 function SearchPage() {
-  const { setSearchTerm } = useMovieData();
+  const { setSearchTerm ,setType} = useMovieData();
   const inputRef = useRef();
 
   const Search = styled("div")(({ theme }) => ({
@@ -108,10 +108,13 @@ function SearchPage() {
               color: "white",
             },
           }}
-          defaultValue="all"
+        
+           defaultValue="all"
+  onChange={(e) => setType(e.target.value)}
           disableUnderline
           IconComponent={(props) => (
-            <ArrowDropDownIcon {...props} style={{ color: "white" }} />
+            <ArrowDropDownIcon {...props} style={{ color: "white" }}
+             />
           )}
         >
           <option value="all">All</option>

@@ -1,32 +1,49 @@
-import React, {  createContext, useContext, useEffect } from 'react'
-import { useState } from 'react'
-import { MYKEY, REST_HOST_API } from '../moviedb';
+import React, { createContext, useContext, useEffect } from "react";
+import { useState } from "react";
+import { MYKEY, REST_HOST_API } from "../moviedb";
 
-
-const MovieDataApi=createContext()
+const MovieDataApi = createContext();
 
 export function MovieFetchData({ children }) {
   const [movie, setMovie] = useState([]);
   const [searchTerm, setSearchTerm] = useState("Tamil");
-  const [favoriteList, setFavoriteList] =useState([])
+  const [type, setType] = useState("all");
+  const [page, setPage] = useState(1);
+const [totalResults, setTotalResults] = useState(0);
 
+  const [favoriteList, setFavoriteList] = useState([]);
+  // https://www.omdbapi.com/?apikey=1f1cbf65&s=dada&page=1&type=movie
   useEffect(() => {
-    if(!searchTerm) return;
-
-    fetch(`${REST_HOST_API}/?apikey=${MYKEY}&s=${searchTerm}`)
+    if (!searchTerm) return;
+    const typeParam = type !== "all" ? `&type=${type}` : "";
+    fetch(
+      `${REST_HOST_API}/?apikey=${MYKEY}&s=${searchTerm}&page=${page}${typeParam}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setMovie(data.Search || []);
+        setTotalResults(Number(data.totalResults) || 0)
       })
       .catch((err) => console.log(err));
-  }, [searchTerm]);
+  }, [searchTerm, type,page]);
 
   return (
-   <MovieDataApi.Provider value={{ movie, setMovie, setSearchTerm ,setFavoriteList,  favoriteList,  }}>
-  {children}
-</MovieDataApi.Provider>
+    <MovieDataApi.Provider
+      value={{
+        movie,
+        setMovie,
+        setSearchTerm,
+        setFavoriteList,
+        favoriteList,
+        type,
+        setType,
+        setPage,totalResults
+      }}
+    >
+      {children}
+    </MovieDataApi.Provider>
   );
 }
-export function useMovieData(){
-    return useContext(MovieDataApi)
+export function useMovieData() {
+  return useContext(MovieDataApi);
 }
