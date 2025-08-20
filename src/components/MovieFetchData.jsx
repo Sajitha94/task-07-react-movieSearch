@@ -10,6 +10,7 @@ export function MovieFetchData({ children }) {
   const [type, setType] = useState("all");
   const [page, setPage] = useState(1);
 const [totalResults, setTotalResults] = useState(0);
+const [error,setError]=useState("")
 
   const [favoriteList, setFavoriteList] = useState([]);
   // https://www.omdbapi.com/?apikey=1f1cbf65&s=dada&page=1&type=movie
@@ -21,10 +22,20 @@ const [totalResults, setTotalResults] = useState(0);
     )
       .then((res) => res.json())
       .then((data) => {
+        if (data.Response === "True") {
         setMovie(data.Search || []);
-        setTotalResults(Number(data.totalResults) || 0)
+        setTotalResults(Number(data.totalResults) || 0);
+        setError(""); 
+      } else {
+        setMovie([]);
+        setTotalResults(0);
+        setError(data.Error	||"Network error, please try again.");
+      }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        setError(err)
+      });
   }, [searchTerm, type,page]);
 
   return (
@@ -37,7 +48,7 @@ const [totalResults, setTotalResults] = useState(0);
         favoriteList,
         type,
         setType,page,
-        setPage,totalResults
+        setPage,totalResults,error
       }}
     >
       {children}

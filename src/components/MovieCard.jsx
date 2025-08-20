@@ -14,7 +14,7 @@ import StarIcon from "@mui/icons-material/Star";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 function MovieCard({ favoriteListItem }) {
-  const { movie, favoriteList, setFavoriteList ,setPage,page, totalResults} = useMovieData();
+  const { movie, favoriteList, setFavoriteList ,setPage,page, totalResults,error} = useMovieData();
   const navigate = useNavigate();
 
 const totalPages = Math.ceil(totalResults / 10) || 1;
@@ -38,9 +38,17 @@ const totalPages = Math.ceil(totalResults / 10) || 1;
       }
     });
   }
-
+if (error) {
   return (
-    <>
+    <Box className="flex justify-center items-center h-64">
+      <Typography variant="h6" sx={{ color: "#f87171" }}>
+        {error}
+      </Typography>
+    </Box>
+  );
+}
+  return (
+    <>{}
     <Box className=" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  place-items-center gap-3 lg:px-24 md:px-10 px-3">
       {movieListItem.map((movieList, idx) => (
         <Card
