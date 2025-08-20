@@ -113,7 +113,7 @@ if (error) {
 
      
     </Box>
-    {movieListItem.length > 0  &&
+    {movieListItem.length > 0  &&  !favoriteListItem &&
  <Stack spacing={2} className="flex justify-center items-center my-10">
     <Pagination
       count={totalPages}

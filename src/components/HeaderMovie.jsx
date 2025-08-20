@@ -47,7 +47,7 @@ function HeaderMovie() {
                   display: { xs: "none", sm: "inline-flex" },
                 }}
               />{" "}
-              Favorites {favoriteList.length>0 ?`( ${favoriteList.length})`:''}
+              Favourites {favoriteList.length>0 ?`( ${favoriteList.length})`:''}
             </Button>
           </Box>
         </Toolbar>

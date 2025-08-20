@@ -69,7 +69,7 @@ function ProductDetails() {
           >
             <StarIcon className="text-amber-500" />
             <span className="text-amber-500">
-              <strong>In Favorites</strong>
+              <strong>In Favourites</strong>
             </span>
           </Button>
         ) : (
@@ -79,7 +79,7 @@ function ProductDetails() {
           >
             <StarBorderIcon className="text-amber-500" />
             <span className="text-amber-500 py-1">
-              <strong> Add to Favorites</strong>
+              <strong> Add to Favourites</strong>
             </span>
           </Button>
         )}
