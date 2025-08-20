@@ -11,6 +11,8 @@ import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import { useNavigate } from "react-router-dom";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import StarIcon from "@mui/icons-material/Star";
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
 function MovieCard({ favoriteListItem }) {
   const { movie, favoriteList, setFavoriteList } = useMovieData();
   const navigate = useNavigate();
@@ -36,6 +38,7 @@ function MovieCard({ favoriteListItem }) {
   }
 
   return (
+    <>
     <Box className=" grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2  place-items-center gap-3 lg:px-24 md:px-10 px-3">
       {movieListItem.map((movieList, idx) => (
         <Card
@@ -97,7 +100,21 @@ function MovieCard({ favoriteListItem }) {
           </CardContent>
         </Card>
       ))}
+
+     
     </Box>
+     <Stack spacing={2} className="flex justify-center items-center my-10">
+    <Pagination
+      count={10}
+      color="primary"
+      sx={{
+        backgroundColor: "#e3f2fd",
+        borderRadius: "8px",
+        padding: "5px 10px",
+      }}
+    />
+  </Stack>
+  </>
   );
 }
 
