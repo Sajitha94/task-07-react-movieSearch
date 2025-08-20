@@ -14,7 +14,7 @@ import StarIcon from "@mui/icons-material/Star";
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 function MovieCard({ favoriteListItem }) {
-  const { movie, favoriteList, setFavoriteList ,setPage, totalResults} = useMovieData();
+  const { movie, favoriteList, setFavoriteList ,setPage,page, totalResults} = useMovieData();
   const navigate = useNavigate();
 
 const totalPages = Math.ceil(totalResults / 10) || 1;
@@ -105,9 +105,11 @@ const totalPages = Math.ceil(totalResults / 10) || 1;
 
      
     </Box>
-     <Stack spacing={2} className="flex justify-center items-center my-10">
+    {movieListItem.length > 0  &&
+ <Stack spacing={2} className="flex justify-center items-center my-10">
     <Pagination
       count={totalPages}
+       page={page}   
       onChange={(e, value) => setPage(value)} 
       color="primary"
       sx={{
@@ -117,6 +119,8 @@ const totalPages = Math.ceil(totalResults / 10) || 1;
       }}
     />
   </Stack>
+    }
+    
   </>
   );
 }

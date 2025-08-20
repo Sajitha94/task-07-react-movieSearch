@@ -36,7 +36,7 @@ const [totalResults, setTotalResults] = useState(0);
         setFavoriteList,
         favoriteList,
         type,
-        setType,
+        setType,page,
         setPage,totalResults
       }}
     >
