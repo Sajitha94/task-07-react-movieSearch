@@ -7,6 +7,7 @@ import InputLabel from "@mui/material/InputLabel";
 import FormControl from "@mui/material/FormControl";
 import { useMovieData } from "./MovieFetchData";
 import { useRef, useState } from "react";
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 function SearchPage() {
   const { setSearchTerm } = useMovieData();
   const inputRef = useRef();
@@ -51,7 +52,8 @@ function SearchPage() {
     }
   }
   return (
-    <Box className="flex gap-5 lg:mx-24 md:mx-10 mx-3  my-10 justify-between">
+    <Box className="flex flex-col md:flex-row gap-5 lg:mx-24 md:mx-10 mx-3  my-10 justify-between">
+      <Box className="flex flex-row w-full gap-3">
       <Search className="w-full px-5 flex items-center">
         <SearchIconWrapper>
           <SearchIcon />
@@ -64,11 +66,12 @@ function SearchPage() {
         />
       </Search>
       <Button
-        sx={{ backgroundColor: "#5da9e9", borderRadius: "6px", width: "100px" }}
+        sx={{ backgroundColor: "#5da9e9", borderRadius: "6px", width: "100px" ,fontSize:{xs:"12px",sm:"14px"}}}
         onClick={handleSearch}
       >
         search
       </Button>
+      </Box>
       <FormControl
         sx={{
           backgroundColor: "#13161a",
@@ -81,6 +84,7 @@ function SearchPage() {
           display: "flex",
           alignItems: "center",
           justifyItems: "center",
+          width:"150px"
         }}
       >
         <InputLabel
@@ -106,6 +110,9 @@ function SearchPage() {
           }}
           defaultValue="all"
           disableUnderline
+          IconComponent={(props) => (
+            <ArrowDropDownIcon {...props} style={{ color: "white" }} />
+          )}
         >
           <option value="all">All</option>
           <option value="movie">Movies</option>

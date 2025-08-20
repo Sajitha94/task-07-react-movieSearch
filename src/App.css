@@ -6,3 +6,8 @@ body{
   background-color: #13161a !important;
   color: white !important;
 }
+
+.MuiNativeSelect-select {
+
+background-color: #13161a !important;
+}
