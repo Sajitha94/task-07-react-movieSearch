@@ -52,39 +52,20 @@ function SearchPage() {
     }
   }
   return (
-    <Box className="flex flex-col md:flex-row gap-5 lg:mx-24 md:mx-10 mx-3  my-10 justify-between">
-      <Box className="flex flex-row w-full gap-3">
-      <Search className="w-full px-5 flex items-center">
-        <SearchIconWrapper>
-          <SearchIcon />
-        </SearchIconWrapper>
-        <StyledInputBase
-          placeholder="Search…"
-          inputProps={{ "aria-label": "search" }}
-          inputRef={inputRef}
-          onKeyDown={handleKeyDown}
-        />
-      </Search>
-      <Button
-        sx={{ backgroundColor: "#5da9e9", borderRadius: "6px", width: "100px" ,fontSize:{xs:"12px",sm:"14px"}}}
-        onClick={handleSearch}
-      >
-        search
-      </Button>
-      </Box>
-      <FormControl
+    <Box className="flex flex-col md:flex-row gap-5 lg:mx-24 md:mx-10 mx-3  my-5 justify-between">
+       <FormControl
+        className="order-1 md:order-2"
         sx={{
           backgroundColor: "#13161a",
           border: "1px solid #1d232b",
           borderRadius: "5px",
           color: "white",
-          width: "10vw",
           paddingLeft: "10px",
           fontSize: "10px",
           display: "flex",
           alignItems: "center",
           justifyItems: "center",
-          width:"150px"
+          width:{sm:"150px",xs:"100px"}
         }}
       >
         <InputLabel
@@ -123,6 +104,26 @@ function SearchPage() {
           <option value="episode">Episodes</option>
         </NativeSelect>
       </FormControl>
+      <Box className="flex flex-row w-full gap-3 order-2 md:order-1">
+      <Search className="w-full px-5 flex items-center">
+        <SearchIconWrapper>
+          <SearchIcon />
+        </SearchIconWrapper>
+        <StyledInputBase
+          placeholder="Search…"
+          inputProps={{ "aria-label": "search" }}
+          inputRef={inputRef}
+          onKeyDown={handleKeyDown}
+        />
+      </Search>
+      <Button
+        sx={{ backgroundColor: "#5da9e9", borderRadius: "6px", width: "100px" ,fontSize:{xs:"12px",sm:"14px"}}}
+        onClick={handleSearch}
+      >
+        search
+      </Button>
+      </Box>
+     
     </Box>
   );
 }
