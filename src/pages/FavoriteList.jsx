@@ -20,7 +20,7 @@ function FavoriteList() {
         </Box>
       ) : (
         <Box className='flex justify-center items-center my-20'>
-        <h1 className="text-amber-100 text-3xl">No Favorite Items</h1>
+        <h1 className="text-amber-100 text-3xl">No Favourite Items</h1>
         </Box>
       )}
     </>
